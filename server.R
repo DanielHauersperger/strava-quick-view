@@ -81,4 +81,12 @@ server <- function(input, output, session) {
     )
   })
   
+  output$kudos_vs_time <- renderPlot({
+    ggplot(data = df, aes(x = moving_time, y = kudos_count)) +
+      geom_point() +
+      geom_smooth(method = "lm") +  # Best fit line (linear model)
+      labs(title = "Scatterplot", x = "Move time (seconds)", y = "Kudos") +
+      theme_minimal() +
+      scale_x_continuous(labels = function(x) paste0(x, "s"))
+  })
 }
